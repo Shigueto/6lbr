@@ -1,6 +1,12 @@
 
 #Default configuration for native
 
+ifdef NETWORK_ID
+INSTANCE_SUFFIX=-$(NETWORK_ID)
+INSTANCE_NAME=6lbr$(INSTANCE_SUFFIX)
+else
+INSTANCE_NAME=6lbr
+endif
 WITH_MULTI_RADIO?=1
 ifeq ($(WITH_CONTIKI),1)
 WITH_RDC=custom
@@ -74,7 +80,8 @@ install:
 	install -d $(DESTDIR)/etc/6lbr
 	cp -r package/etc/6lbr $(DESTDIR)/etc
 	install -d $(DESTDIR)/etc/init.d
-	install package/etc/init.d/* $(DESTDIR)/etc/init.d
+	install package/etc/init.d/6lbr $(DESTDIR)/etc/init.d/$(INSTANCE_NAME)
+	sed -i 's/NAME=6lbr/NAME=$(INSTANCE_NAME)/' /etc/init.d/$(INSTANCE_NAME)
 	install -d $(DESTDIR)/usr/bin
 	install package/usr/bin/* $(DESTDIR)/usr/bin
 	install -d $(DESTDIR)/usr/lib/6lbr
