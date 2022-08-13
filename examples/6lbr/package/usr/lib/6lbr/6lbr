@@ -35,6 +35,7 @@ else
 	exit 1
 fi
 
+source $CFG
 export CETIC_6LBR_CONF=$CFG
 
 # Bootstrapping
