@@ -14,6 +14,7 @@ set -e
 # /etc/init.d/6lbr: start and stop the 6LoWPAN Border Router
 
 NAME=6lbr
+DAEMON_NAME=6lbr
 DAEMON=/usr/lib/6lbr/6lbr
 DAEMON_OPT=/etc/6lbr/$NAME.conf
 PIDFILE=/var/run/$NAME.pid
@@ -62,7 +63,7 @@ d_start () {
 
 d_stop() {
 	log_daemon_msg "Stopping 6LoWPAN Border Router"
-	start-stop-daemon --stop --quiet --oknodo --pidfile $PIDFILE --name $NAME --retry 5
+	start-stop-daemon --stop --quiet --oknodo --pidfile $PIDFILE --name $DAEMON_NAME --retry 5
 	log_end_msg $?
 }
 

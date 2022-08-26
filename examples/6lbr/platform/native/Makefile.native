@@ -81,7 +81,7 @@ install:
 	cp -r package/etc/6lbr $(DESTDIR)/etc
 	install -d $(DESTDIR)/etc/init.d
 	install package/etc/init.d/6lbr $(DESTDIR)/etc/init.d/$(INSTANCE_NAME)
-	sed -i 's/NAME=6lbr/NAME=$(INSTANCE_NAME)/' /etc/init.d/$(INSTANCE_NAME)
+	sed -i 's/^NAME=6lbr/NAME=$(INSTANCE_NAME)/' /etc/init.d/$(INSTANCE_NAME)
 	install -d $(DESTDIR)/usr/bin
 	install package/usr/bin/* $(DESTDIR)/usr/bin
 	install -d $(DESTDIR)/usr/lib/6lbr
