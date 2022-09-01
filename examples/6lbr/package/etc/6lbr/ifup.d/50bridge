@@ -37,6 +37,9 @@ case $OS in
 		echo "6lbr-ifup: Attach device $DEV to bridge $DEV_BRIDGE"
 		ip addr flush dev $DEV
 		brctl addif $DEV_BRIDGE $DEV
+		echo "Restarting $DEV"
+		ip -6 link set $DEV down
+		ip -6 link set $DEV up
 		;;
 
 	Darwin)
